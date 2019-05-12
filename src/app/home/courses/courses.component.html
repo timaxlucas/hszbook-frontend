@@ -1,0 +1,69 @@
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+
+  <h1 class="h2">Courses</h1>
+  <div class="text-muted">last update: {{lastUpdate | date: 'H:mm, dd.MM.yyyy' }}</div>
+  <!--
+  <div class="btn-toolbar mb-2 mb-md-0">
+    <div class="btn-group mr-2">
+      <button class="btn btn-sm btn-outline-secondary">Share</button>
+      <button class="btn btn-sm btn-outline-secondary">Export</button>
+    </div>
+    <button class="btn btn-sm btn-outline-secondary dropdown-toggle">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+      All
+    </button>
+  </div>-->
+</div>
+
+<table class="table table-sm" style="border-collapse:collapse;">
+  <thead>
+    <tr>
+      <th scope="col" style="border-top: none">Kurs ID</th>
+      <th scope="col" style="border-top: none">Time</th>
+      <th scope="col" style="border-top: none">Booking until</th>
+      <th scope="col" style="border-top: none">Timespan</th>
+      <th scope="col" style="border-top: none">Place</th>
+      <th scope="col" style="border-top: none">Price</th>
+      <th scope="col" style="border-top: none">Register</th>
+    </tr>
+  </thead>
+  <tbody>
+    <ng-container *ngFor="let c of courses">
+      <tr>
+        <th class="align-middle" scope="row">{{ c.kid }}</th>
+        <td class="align-middle">{{ c.day }}, {{ c.time }}</td>
+        <td class="align-middle">
+            <div *ngIf="c.bookingDate != 0">
+          {{ c.bookingDate | date: 'H:mm, dd.MM.yyyy' }}
+        </div>
+        <div *ngIf="c.bookingDate == 0" class="text-primary">
+          active now
+        </div>
+        </td>
+        <td class="align-middle" >
+          <div *ngIf="c.singleEvent">
+            -
+          </div>
+          <div *ngIf="!c.singleEvent">
+            {{ c.timespan }}
+          </div>
+        </td>
+        <td class="align-middle">{{ c.place }}</td>
+        <td class="align-middle" [class.text-success]="c.price == '0'" [class.text-primary]="c.price != '0'">{{ (c.price == '0' ? 'free' : c.price+'€') }}</td>
+        <td class="align-middle">
+          <button type="button" 
+          [class.btn-primary]="c.bookingDate != 0"
+          [class.btn-success]="c.bookingDate == 0"
+           class="btn btn-sm" (click)="registerFor(c)">
+           <div *ngIf="c.bookingDate != 0">
+              Schedule
+            </div>
+            <div *ngIf="c.bookingDate == 0">
+              Register now
+            </div>
+          </button>
+        </td>
+      </tr>
+    </ng-container>
+  </tbody>
+</table>
