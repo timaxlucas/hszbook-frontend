@@ -25,7 +25,7 @@ export class CoursesComponent implements OnInit {
       this.courses = data['data'].sort(function(a,b){
         // Turn your strings into dates, and then subtract them
         // to get a value that is either negative, positive, or zero.
-        return +new Date(a.date) - +new Date(b.date);
+        return +new Date(a.bookingDate) - +new Date(b.bookingDate);
       });
       console.log(this.courses);
       this.lastUpdate = data['timestamp'];
