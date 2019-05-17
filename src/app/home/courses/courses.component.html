@@ -51,17 +51,26 @@
         <td class="align-middle">{{ c.place }}</td>
         <td class="align-middle" [class.text-success]="c.price == '0'" [class.text-primary]="c.price != '0'">{{ (c.price == '0' ? 'free' : c.price+'€') }}</td>
         <td class="align-middle">
-          <button type="button" 
-          [class.btn-primary]="c.bookingDate != 0"
-          [class.btn-success]="c.bookingDate == 0"
-           class="btn btn-sm" (click)="registerFor(c)">
-           <div *ngIf="c.bookingDate != 0">
-              Schedule
+            <div *ngIf="c.state == 'Warteliste'">
+                <button disabled type="button" 
+                 class="btn btn-sm btn-danger" (click)="registerFor(c)">
+                 Waitlist
+                </button>
             </div>
-            <div *ngIf="c.bookingDate == 0">
-              Register now
-            </div>
-          </button>
+          <div *ngIf="c.state != 'Warteliste'">
+              <button type="button" 
+              [class.btn-primary]="c.bookingDate != 0"
+              [class.btn-success]="c.bookingDate == 0"
+               class="btn btn-sm" (click)="registerFor(c)">
+               <div *ngIf="c.bookingDate != 0">
+                  Schedule
+                </div>
+                <div *ngIf="c.bookingDate == 0">
+                  Register now
+                </div>
+              </button>
+          </div>
+          
         </td>
       </tr>
     </ng-container>
