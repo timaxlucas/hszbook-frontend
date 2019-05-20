@@ -52,3 +52,9 @@
     font-size: .75rem;
     text-transform: uppercase;
   }
+
+  .footer {
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+  }
