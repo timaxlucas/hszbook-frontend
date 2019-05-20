@@ -9,6 +9,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CoursesComponent } from './courses/courses.component';
 import { RegisterComponent } from './register/register.component';
 import { SchedulesComponent } from './schedules/schedules.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { SchedulesComponent } from './schedules/schedules.component';
         HomeComponent,
         CoursesComponent,
         RegisterComponent,
-        SchedulesComponent
+        SchedulesComponent,
+        DashboardComponent
     ],
     imports: [
         BrowserModule,
