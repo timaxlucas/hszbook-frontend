@@ -18,9 +18,9 @@ export class ScheduleService {
     return this.http.get<Schedule[]>(`${environment.apiUrl}/schedule/all`);
   }
 
-  cancel(email, kid) {
+  cancel(user, kid) {
     let body = new URLSearchParams();
-    body.set('email', email);
+    body.set('user', user);
     body.set('kid', kid);
 
     let options = {
