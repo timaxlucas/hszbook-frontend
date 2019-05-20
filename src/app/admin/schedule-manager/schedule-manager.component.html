@@ -28,17 +28,19 @@
     <ng-container *ngFor="let s of schedules">
       <tr>
         <th class="align-middle" scope="row"><a [href]="s.link">{{ s.kid }}</a></th>
-        <td class="align-middle">{{ s.email }}</td>
+        <td class="align-middle">{{ s.user }}</td>
         <td class="align-middle">{{ s.date | date: 'H:mm, dd.MM.yyyy'}}</td>
-        <td class="align-middle"><div *ngIf="s.running">✅</div><div *ngIf="!s.running">⚠️</div></td>
-        <td [attr.data-target]="'#' + s.kid + s.email" data-toggle="collapse" class="accordion-toggle align-middle" >
+        <td class="align-middle">
+          <div *ngIf="s.running">✅</div><div *ngIf="!s.running">⚠️</div>
+        </td>
+        <td [attr.data-target]="'#' + s.kid + s.user" data-toggle="collapse" class="accordion-toggle align-middle" >
           <i class="fas fa-chevron-circle-down" style="vertical-align:text-bottom "></i>
         </td>
         <td class="align-middle"><button type="button" class="btn btn-danger btn-sm" (click)="cancelSchedule(s)">Cancel</button></td>
       </tr>
       <tr >
         <td colspan="6" class="hiddenRow align-middle">
-          <div class="accordian-body collapse" [id]="s.kid+s.email">
+          <div class="accordian-body collapse" [id]="s.kid+s.user">
             <pre>{{ s.data | json }}</pre>
           </div> 
         </td>
