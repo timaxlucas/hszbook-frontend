@@ -1,4 +1,4 @@
-# 📜 hszbook-backend
+# 📜 hszbook-frontend
 
 
 
