@@ -9,12 +9,10 @@ import { routing } from './app.routing';
 import { AlertComponent } from './_components';
 import { JwtInterceptor, ErrorInterceptor } from './_helpers';
 import { LoginComponent } from './login';
-import { AdminComponent } from './admin/admin.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { HomeModule } from './home';;
 import { SidebarComponent } from './sidebar/sidebar.component'
 import { AdminModule } from './admin';
-import { RegisterComponent } from './home/register/register.component';
 
 @NgModule({
     imports: [

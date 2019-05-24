@@ -10,6 +10,8 @@ import { CoursesComponent } from './courses/courses.component';
 import { RegisterComponent } from './register/register.component';
 import { SchedulesComponent } from './schedules/schedules.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { FeatherIconsPipe } from '@app/_helpers/feather.pipe';
+import { CalendarMomentPipe } from '@app/_helpers/calendar.pipe';
 
 
 @NgModule({
@@ -18,7 +20,9 @@ import { DashboardComponent } from './dashboard/dashboard.component';
         CoursesComponent,
         RegisterComponent,
         SchedulesComponent,
-        DashboardComponent
+        DashboardComponent,
+        FeatherIconsPipe,
+        CalendarMomentPipe
     ],
     imports: [
         BrowserModule,

@@ -2,3 +2,45 @@
     padding: 0 !important;
     border-top: none;
 }
+
+.list-icon {
+    padding: 0;
+    margin: 0 0;
+    list-style: none;
+    line-height: 1.9;
+    color: #9d9d9d;
+}
+
+
+.header {
+    
+}
+
+.srclink {
+    color: #9d9d9d !important;
+    text-decoration: underline;
+}
+
+.red {
+    color: red;
+}
+
+.green {
+    color: #39aa56;
+}
+
+
+.info-icon {
+    padding-right: 5px;
+}
+
+ul {
+    overflow: hidden;
+    white-space: nowrap;
+    display: inline-block;
+}
+
+
+.sidebutton:hover {
+    text-decoration: underline;
+}
