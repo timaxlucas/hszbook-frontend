@@ -4,9 +4,12 @@
 
 > DISCLAIMER: To run hszbook-frontend you need dependency [hszbook-backend](https://github.com/timaxlucas/hszbook-backend)
 
+![Schedule page](https://i.imgur.com/Z71KKXi.png)
+
 ## ✨ Quickstart
 
     npm install && npm start
+    
     
 ## 🐋 Docker
 
