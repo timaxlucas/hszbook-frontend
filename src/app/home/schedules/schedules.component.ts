@@ -22,7 +22,11 @@ export class SchedulesComponent implements OnInit {
 
   loadSchedules() {
     this.scheduleService.getMine().pipe(first()).subscribe(data => {
-      this.schedules = data;
+      this.schedules = data.sort(function(a,b){
+        // Turn your strings into dates, and then subtract them
+        // to get a value that is either negative, positive, or zero.
+        return +new Date(a.date) - +new Date(b.date);
+      });
       console.log(this.schedules);
     }, (error) => {
       console.log("Error while getting schedules: " + error)
