@@ -36,6 +36,7 @@ export class ScheduleService {
     body.set('kid', data.kid);
     body.set('firstname', data.firstName);
     body.set('surname', data.lastName);
+    body.set('gender', data.gender);
     body.set('street', data.street);
     body.set('city', data.city);
     body.set('matrnr', data.matrnr);

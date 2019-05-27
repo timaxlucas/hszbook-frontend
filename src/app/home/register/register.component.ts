@@ -49,6 +49,7 @@ export class RegisterComponent implements OnInit {
   onSubmit() {
     this.submitted = true;
 
+    console.log(this.registerForm.controls.gender);
     // stop here if form is invalid
     if (this.registerForm.invalid) {
       return;
