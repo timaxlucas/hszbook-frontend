@@ -14,15 +14,15 @@
     </button>
   </div>-->
 </div>
-
+<div class="table-responsive">
 <table class="table table-sm" style="border-collapse:collapse;">
   <thead>
     <tr>
-      <th scope="col" style="border-top: none">Kurs ID</th>
+      <th scope="col" style="border-top: none" class="d-none d-md-table-cell">Kurs ID</th>
       <th scope="col" style="border-top: none">Time</th>
       <th scope="col" style="border-top: none">Booking until</th>
-      <th scope="col" style="border-top: none">Timespan</th>
-      <th scope="col" style="border-top: none">Place</th>
+      <th scope="col" style="border-top: none" class="d-none d-md-table-cell">Timespan</th>
+      <th scope="col" style="border-top: none" class="d-none d-md-table-cell">Place</th>
       <th scope="col" style="border-top: none">Price</th>
       <th scope="col" style="border-top: none">Register</th>
     </tr>
@@ -30,7 +30,7 @@
   <tbody>
     <ng-container *ngFor="let c of courses">
       <tr>
-        <th class="align-middle" scope="row">{{ c.kid }}</th>
+        <th class="align-middle d-none d-md-table-cell" scope="row">{{ c.kid }}</th>
         <td class="align-middle">{{ c.day }}, {{ c.time }}</td>
         <td class="align-middle">
             <div *ngIf="c.bookingDate != 0">
@@ -40,7 +40,7 @@
           active now
         </div>
         </td>
-        <td class="align-middle" >
+        <td class="align-middle d-none d-md-table-cell" >
           <div *ngIf="c.singleEvent">
             -
           </div>
@@ -48,7 +48,7 @@
             {{ c.timespan }}
           </div>
         </td>
-        <td class="align-middle"><a href="https://www.google.com/maps?q={{c.place}}" class="link" target="_blank">{{ c.place }}</a></td>
+        <td class="align-middle d-none d-md-table-cell"><a href="https://www.google.com/maps?q={{c.place}}" class="link" target="_blank">{{ c.place }}</a></td>
         <td class="align-middle" [class.text-success]="c.price == '0'" [class.text-primary]="c.price != '0'">{{ (c.price == '0' ? 'free' : c.price+'€') }}</td>
         <td class="align-middle">
             <div *ngIf="c.state == 'Warteliste'">
@@ -76,3 +76,4 @@
     </ng-container>
   </tbody>
 </table>
+</div>
