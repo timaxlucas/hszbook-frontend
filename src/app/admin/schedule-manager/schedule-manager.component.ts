@@ -30,7 +30,7 @@ export class ScheduleManagerComponent implements OnInit {
   }
 
   cancelSchedule(s) {
-    this.scheduleService.cancel(s.user, s.kid).pipe(first()).subscribe(res => {
+    this.scheduleService.cancel(s.id).pipe(first()).subscribe(res => {
       this.loadSchedules();
     }, err => {
       console.log(err);
