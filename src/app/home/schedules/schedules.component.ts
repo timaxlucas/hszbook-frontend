@@ -27,6 +27,17 @@ export class SchedulesComponent implements OnInit {
         // to get a value that is either negative, positive, or zero.
         return +new Date(a.date) - +new Date(b.date);
       });
+      this.schedules.map(s => {
+        if (s.running)
+          s.status = 'running';
+        else if (!s.running && s.result === null)
+          s.status = 'working';
+        else if (!s.running && s.result.success)
+          s.status = 'success';
+        else if (!s.running && !s.result.success)
+          s.status = 'fail';
+        return s;
+      })
       console.log(this.schedules);
     }, (error) => {
       console.log("Error while getting schedules: " + error)

@@ -14,95 +14,110 @@
     </div>-->
 </div>
 <ng-container *ngFor="let s of schedules">
-  <div class="card my-3">
-    <div class="card-body align-items-start d-flex flex-column flex-sm-row justify-content-between"
-      style="border-left: 10px solid #39aa56; padding-left: 1rem">
+  <div class="schedule-card my-3 align-items-start d-flex flex-column flex-sm-row justify-content-between"
+    [class.border-success]="s.status == 'success'" [class.border-fail]="s.status == 'fail'"
+    [class.border-running]="s.status == 'running'" [class.border-working]="s.status == 'working'">
 
-      <div style="padding-left: 1.3rem; flex-grow: 1" class="pr-3">
-        <div class="header">
-          <div *ngIf="s.running" class="green">
-            <span style="margin-left: -1.8rem; margin-right: 0.3rem" [innerHtml]="'check' | feather"></span>
-            <b>running:</b> {{ s.kid }}
-          </div>
-          <div *ngIf="!s.running" class="red">
-            <span style="margin-left: -1.8rem; margin-right: 0.3rem" [innerHtml]="'x' | feather"></span>
-            <b>stopped:</b> {{ s.kid }}
-          </div>
-        </div>
-
-        <ul class="list-icon">
-          <li>
-            <span class="info-icon" [innerHtml]="'play' | feather:16:'#9d9d9d' "></span>
-            <a [href]="s.link" class="srclink" target="_blank">Volleyball</a>
-          </li>
-          <li>
-            <span class="info-icon" [innerHtml]="'clock' | feather:16:'#9d9d9d' "></span>
-            {{ s.date | calendar }}
-          </li>
-          <li>
-            <span class="info-icon" [innerHtml]="'calendar' | feather:16:'#9d9d9d' "></span>
-            {{ s.date | date: 'H:mm:ss, dd.MM.yyyy'}}
-          </li>
-        </ul>
+    <div style="padding-left: 1.3rem; flex-grow: 1" class="pr-3">
+      <div *ngIf="s.status == 'running'" class="running">
+        <span style="margin-left: -1.8rem; margin-right: 0.4rem" [innerHtml]="'clock' | feather"></span>
+        <b>scheduled:</b> {{ s.kid }}
       </div>
-      <div class="mr-3 mt-3 mt-sm-0">
-        <div class="row">
-          <div class="col-12 col-lg-6">
-            <div class="row">
-              <div class="col-4 pr-0">
-                <ul class="list-icon">
-                  <li><b>Name</b></li>
-                  <li><b>Surname</b></li>
-                  <li><b>City</b></li>
-                  <li><b>Street</b></li>
-                </ul>
-              </div>
-              <div class="col-8">
-                <ul class="list-icon">
-                  <li>{{ s.data.firstname }}</li>
-                  <li>{{ s.data.surname }}</li>
-                  <li>{{ s.data.city }}</li>
-                  <li class="text-nowrap">{{ s.data.street }}</li>
-                </ul>
-              </div>
+      <div *ngIf="s.status == 'working'" class="working">
+        <span style="margin-left: -1.8rem; margin-right: 0.4rem" [innerHtml]="'zap' | feather"></span>
+        <b>running</b> {{ s.kid }}
+      </div>
+      <div *ngIf="s.status == 'success'" class="success">
+        <span style="margin-left: -1.8rem; margin-right: 0.3rem" [innerHtml]="'check' | feather"></span>
+        <b>success:</b> {{ s.kid }}
+      </div>
+      <div *ngIf="s.status == 'fail'" class="fail">
+        <span style="margin-left: -1.8rem; margin-right: 0.3rem" [innerHtml]="'x' | feather"></span>
+        <b>failed:</b> {{ s.kid }}
+      </div>
+
+      <ul class="list-icon">
+        <li>
+          <span class="info-icon" [innerHtml]="'play' | feather:16:'#9d9d9d' "></span>
+          <a [href]="s.link" class="srclink" target="_blank">Volleyball</a>
+        </li>
+        <li>
+          <span class="info-icon" [innerHtml]="'clock' | feather:16:'#9d9d9d' "></span>
+          {{ s.date | calendar }}
+        </li>
+        <li>
+          <span class="info-icon" [innerHtml]="'calendar' | feather:16:'#9d9d9d' "></span>
+          {{ s.date | date: 'H:mm:ss, dd.MM.yyyy'}}
+        </li>
+      </ul>
+    </div>
+    <div *ngIf="s.status == 'fail'" class="mr-3 mt-3 mt-sm-0">
+      <div class="">
+        <b>Error message:</b> {{ s.result.message }}
+      </div>
+    </div>
+    <div *ngIf="s.status != 'fail'" class="mr-3 mt-3 mt-sm-0">
+      <div class="row">
+        <div class="col-12 col-lg-6">
+          <div class="row">
+            <div class="col-4 pr-0">
+              <ul class="list-icon">
+                <li><b>Name</b></li>
+                <li><b>Surname</b></li>
+                <li><b>City</b></li>
+                <li><b>Street</b></li>
+              </ul>
             </div>
-          </div>
-          <div class="col-12 col-lg-6">
-            <div class="row">
-              <div class="col-4 pr-0">
-                <ul class="list-icon">
-                  <li><b>E-Mail</b></li>
-                  <li><b>MatrNr</b></li>
-                  <li><b>Phone</b></li>
-                  <li><b>IBAN</b></li>
-                </ul>
-              </div>
-              <div class="col-8 mb-3 mb-sm-0">
-                <ul class="list-icon">
-                  <li [title]="s.data.email">{{ s.data.email }}</li>
-                  <li>{{ s.data.matrnr }}</li>
-                  <li [title]="s.data.phone">{{ s.data.phone }}</li>
-                  <li [title]="s.data.iban">{{ s.data.iban }}</li>
-                </ul>
-              </div>
+            <div class="col-8">
+              <ul class="list-icon">
+                <li>{{ s.data.firstname }}</li>
+                <li>{{ s.data.surname }}</li>
+                <li>{{ s.data.city }}</li>
+                <li class="text-nowrap">{{ s.data.street }}</li>
+              </ul>
             </div>
           </div>
         </div>
+        <div class="col-12 col-lg-6">
+          <div class="row">
+            <div class="col-4 pr-0">
+              <ul class="list-icon">
+                <li><b>E-Mail</b></li>
+                <li><b>MatrNr</b></li>
+                <li><b>Phone</b></li>
+                <li><b>IBAN</b></li>
+              </ul>
+            </div>
+            <div class="col-8 mb-3 mb-sm-0">
+              <ul class="list-icon">
+                <li [title]="s.data.email">{{ s.data.email }}</li>
+                <li>{{ s.data.matrnr }}</li>
+                <li [title]="s.data.phone">{{ s.data.phone }}</li>
+                <li [title]="s.data.iban">{{ s.data.iban }}</li>
+              </ul>
+            </div>
+          </div>
+        </div>
       </div>
+    </div>
 
-      <div style="flex-grow: 1"
-        class="text-right d-flex flex-sm-column flex-row justify-content-center align-items-end">
+    <div style="flex-grow: 1" class="text-right d-flex flex-sm-column flex-row justify-content-center align-items-end">
 
-        <span class="sidebutton btn btn-sm mr-2 mr-sm-0 pt-0 red" (click)="cancelSchedule(s)">
-            <svg style="padding-bottom: 3px;"  xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" color="inherit"><circle cx="12" cy="12" r="10"></circle><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"></line></svg>
-            Cancel
-        </span>
-        <span class="sidebutton btn btn-sm">
+      <span class="sidebutton btn btn-sm mr-2 mr-sm-0 pt-0 text-danger" (click)="cancelSchedule(s)">
+        <svg style="padding-bottom: 3px;" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+          fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+          color="inherit">
+          <circle cx="12" cy="12" r="10"></circle>
+          <line x1="4.93" y1="4.93" x2="19.07" y2="19.07"></line>
+        </svg>
+        {{ s.running ? 'Cancel' : 'Remove' }}
+      </span>
+      <!--<span class="sidebutton btn btn-sm">
             <svg style="padding-bottom: 3px;" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" color="inherit"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
             Edit
-        </span>
-        
-        <!--<button type="button" class="btn btn-outline-danger btn-sm mb-0 mb-sm-2 mr-2 mr-sm-0"
+        </span>-->
+
+      <!--<button type="button" class="btn btn-outline-danger btn-sm mb-0 mb-sm-2 mr-2 mr-sm-0"
           (click)="cancelSchedule(s)">
           <span [innerHtml]="'slash' | feather:16"></span>
           Cancel
@@ -111,7 +126,6 @@
             
           Edit
         </button>-->
-      </div>
     </div>
   </div>
 </ng-container>

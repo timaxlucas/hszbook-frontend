@@ -9,4 +9,11 @@ export class Schedule {
     day: string;
     time: string;
     price: string;
+    status: string;
+    result: Result;
+}
+
+class Result {
+    message: string;
+    success: boolean;
 }
