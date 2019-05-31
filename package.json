@@ -3,8 +3,8 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "concurrently -c \"yellow.bold,green.bold\" -n \"BACKEND,FRONTEND\" \"nodemon ../backend/server.js\" \"ng serve\"",
-    "dev": "ng serve",
+    "start": "concurrently -c \"yellow.bold,green.bold\" -n \"BACKEND,FRONTEND\" \"nodemon ../backend/server.js\" \"ng serve --host 0.0.0.0 --disable-host-check\"",
+    "dev": "ng serve --host 0.0.0.0 --disable-host-check",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",

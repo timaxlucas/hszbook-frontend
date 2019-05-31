@@ -13,10 +13,13 @@
     <div>
       <a class="nav-item" routerLink="schedules" routerLinkActive="active-link">Schedules</a>
     </div>
-    <div class="btn-group dropleft">
-      <span data-toggle="dropdown" class="text-muted" [innerHtml]="'menu' | feather"></span>
+    <div class="dropleft">
+      <a class="p-0" href="#" data-toggle="dropdown">
+        <span class="text-muted" [innerHtml]="'menu' | feather"></span>
+      </a>
       <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
         <a class="dropdown-item" (click)="logout()"><span class="text-muted pr-2" [innerHtml]="'log-out' | feather:16"></span>Logout</a>
+        <a class="dropdown-item text-muted"><span class="text-muted pr-2" [innerHtml]="'settings' | feather:16"></span>Settings</a>
       </div>
     </div>
   </div>
