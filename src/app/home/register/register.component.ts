@@ -4,6 +4,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ScheduleService } from '@app/_services/schedule.service';
 import { first } from 'rxjs/operators';
 import { Schedule } from '@app/_models/schedule';
+import { AlertService } from '@app/_services';
 
 @Component({
   selector: 'app-register',
@@ -19,7 +20,8 @@ export class RegisterComponent implements OnInit {
   constructor(
     private router: Router,
     private scheduleService: ScheduleService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private alertService: AlertService
   ) {
 
     let state = this.router.getCurrentNavigation().extras.state;
@@ -63,6 +65,7 @@ export class RegisterComponent implements OnInit {
     this.scheduleService.registerForCourse(data).pipe(first()).subscribe((res) => {
       this.router.navigate(["/courses"]);
     }, (err) => {
+      this.alertService.error(err);
       console.log(err);
     });
   }

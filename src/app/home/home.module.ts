@@ -10,8 +10,8 @@ import { CoursesComponent } from './courses/courses.component';
 import { RegisterComponent } from './register/register.component';
 import { SchedulesComponent } from './schedules/schedules.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { FeatherIconsPipe } from '@app/_helpers/feather.pipe';
 import { CalendarMomentPipe } from '@app/_helpers/calendar.pipe';
+import { SharedModule } from '@app/_components/shared.module';
 
 
 @NgModule({
@@ -21,7 +21,6 @@ import { CalendarMomentPipe } from '@app/_helpers/calendar.pipe';
         RegisterComponent,
         SchedulesComponent,
         DashboardComponent,
-        FeatherIconsPipe,
         CalendarMomentPipe
     ],
     imports: [
@@ -30,7 +29,8 @@ import { CalendarMomentPipe } from '@app/_helpers/calendar.pipe';
         CommonModule,
         RouterModule,
         HomeRoutingModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        SharedModule
     ]
 })
 export class HomeModule { }

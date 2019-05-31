@@ -13,6 +13,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { HomeModule } from './home';;
 import { SidebarComponent } from './sidebar/sidebar.component'
 import { AdminModule } from './admin';
+import { SharedModule } from './_components/shared.module';
 
 @NgModule({
     imports: [
@@ -21,11 +22,11 @@ import { AdminModule } from './admin';
         HttpClientModule,
         routing,
         HomeModule,
-        AdminModule
+        AdminModule,
+        SharedModule
     ],
     declarations: [
         AppComponent,
-        AlertComponent,
         LoginComponent,
         NavbarComponent,
         SidebarComponent
