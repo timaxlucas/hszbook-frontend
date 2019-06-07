@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: 'http://astraioz.com:4000'
+  apiUrl: 'https://hszbook-api.timaxlucas.de'
 };
