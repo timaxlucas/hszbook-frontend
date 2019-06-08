@@ -99,7 +99,7 @@ export class RegisterComponent implements OnInit {
     }
 
     this.scheduleService.registerForCourse(data).pipe(first()).subscribe((res) => {
-      this.router.navigate(["/courses"]);
+      this.router.navigate(["/schedules"]);
     }, (err) => {
       this.alertService.error(err);
       console.log(err);
