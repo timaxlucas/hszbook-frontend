@@ -11,6 +11,7 @@ import { Schedule } from '@app/_models/schedule';
 export class SchedulesComponent implements OnInit {
 
   schedules: Schedule[];
+  loaded: boolean = false;
 
   constructor(
     private scheduleService: ScheduleService
@@ -38,6 +39,7 @@ export class SchedulesComponent implements OnInit {
           s.status = 'fail';
         return s;
       })
+      this.loaded = true;
       console.log(this.schedules);
     }, (error) => {
       console.log("Error while getting schedules: " + error)

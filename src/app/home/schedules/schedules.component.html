@@ -13,6 +13,10 @@
       </button>
     </div>-->
 </div>
+<div class="label pt-2" *ngIf="loaded && schedules.length == 0">
+  You do not have any schedules<br/>
+  Create one by registering for a <a routerLink="/courses">Course</a>
+</div>
 <ng-container *ngFor="let s of schedules">
   <div class="schedule-card my-3 align-items-start d-flex flex-column flex-sm-row justify-content-between"
     [class.border-success]="s.status == 'success'" [class.border-fail]="s.status == 'fail'"
@@ -123,7 +127,7 @@
           Cancel
         </button>
         <button type="button" class="btn btn-outline-primary btn-sm">
-            
+
           Edit
         </button>-->
     </div>
