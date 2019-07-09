@@ -85,7 +85,9 @@ export class RegisterComponent implements OnInit {
       return;
     }
 
-    let data = this.registerForm.value
+    let data = this.registerForm.value;
+    data.link = this.data['link'];
+    data.sport = this.data['sport'];
     data.kid = this.data['kid'];
     data.date = this.data['bookingDate'];
 

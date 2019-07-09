@@ -26,7 +26,7 @@ export class SchedulesComponent implements OnInit {
       this.schedules = data.sort(function(a,b){
         // Turn your strings into dates, and then subtract them
         // to get a value that is either negative, positive, or zero.
-        return +new Date(a.date) - +new Date(b.date);
+        return +new Date(b.date) - +new Date(a.date);
       });
       this.schedules.map(s => {
         if (s.running)

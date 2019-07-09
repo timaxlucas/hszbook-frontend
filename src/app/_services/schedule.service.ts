@@ -42,7 +42,8 @@ export class ScheduleService {
     body.set('email', data.email);
     body.set('phone', data.phone);
     body.set('iban', data.iban);
-    body.set('link', "https://buchung.hsz.rwth-aachen.de/angebote/Sommersemester_2019/_Volleyball_Spielbetrieb.html");
+    body.set('sport', data.sport);
+    body.set('link', data.link);
 
     let options = {
       headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')

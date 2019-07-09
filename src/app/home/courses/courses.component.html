@@ -1,6 +1,14 @@
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
 
-  <h1 class="h2">Courses</h1>
+  <h1 class="h2">Courses for <a class="dropdown-toggle m-1 mx-2" id="navbarDropdown" role="button"
+    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{selectedSport}}</a>
+  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+    <div *ngFor="let p of sports">
+      <a class="dropdown-item" (click)="courseService.selectSport(p)">{{ p }}</a>
+    </div>
+  </div></h1>
+
+
   <div class="text-muted">last update: {{lastUpdate | date: 'H:mm, dd.MM.yyyy' }}</div>
   <!--
   <div class="btn-toolbar mb-2 mb-md-0">
@@ -52,13 +60,13 @@
         <td class="align-middle" [class.text-success]="c.price == '0'" [class.text-primary]="c.price != '0'">{{ (c.price == '0' ? 'free' : c.price+'€') }}</td>
         <td class="align-middle">
             <div *ngIf="c.state == 'Warteliste'">
-                <button disabled type="" 
+                <button disabled type=""
                  class="btn btn-sm text-danger" style="background-color: #00000000">
                  Waitlist
                 </button>
             </div>
           <div *ngIf="c.state != 'Warteliste'">
-              <button type="button" 
+              <button type="button"
               [class.btn-primary]="c.bookingDate != 0"
               [class.btn-success]="c.bookingDate == 0"
                class="btn btn-sm" (click)="registerFor(c)">
@@ -70,7 +78,7 @@
                 </div>
               </button>
           </div>
-          
+
         </td>
       </tr>
     </ng-container>

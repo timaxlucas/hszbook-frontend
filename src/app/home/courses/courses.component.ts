@@ -14,14 +14,31 @@ export class CoursesComponent implements OnInit {
   courses: Course[];
   lastUpdate: Date;
 
+  selectedSport: string;
+  link: string;
+  sports: string[];
+
   constructor(
     private courseService: CourseService,
     private router: Router
   ) { }
 
   ngOnInit() {
-    this.courseService.getAll().pipe(first()).subscribe(data => {
-      //
+    this.courseService.selectedSport.subscribe(sport => {
+      this.selectedSport = sport;
+      this.updateCourses();
+    });
+    this.courseService.sports.subscribe(sports => {
+        this.sports = sports;
+    });
+  }
+
+  updateCourses() {
+    if (this.selectedSport === null)
+      return;
+
+    this.courseService.getCoursesForSport().pipe(first()).subscribe(data => {
+      this.link = data['link'];
       this.courses = data['data'].sort(function(a,b){
         // Turn your strings into dates, and then subtract them
         // to get a value that is either negative, positive, or zero.
@@ -35,6 +52,8 @@ export class CoursesComponent implements OnInit {
   }
 
   registerFor(c) {
+    c['link'] = this.link;
+    c['sport'] = this.selectedSport;
     this.router.navigate(['/register'], {state: {data: c} });
   }
 
