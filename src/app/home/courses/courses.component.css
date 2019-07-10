@@ -17,3 +17,14 @@
   text-decoration: underline;
   color: inherit;
 }
+
+.label {
+  font-size: 20px;
+  color: #696969;
+  font-weight: 300;
+}
+
+.label-link:hover {
+  cursor: pointer;
+  text-decoration: underline
+}

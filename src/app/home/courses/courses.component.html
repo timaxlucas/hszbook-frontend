@@ -1,87 +1,98 @@
-<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
 
-  <h1 class="h2">Courses for <a class="dropdown-toggle m-1 mx-2" id="navbarDropdown" role="button"
-    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{selectedSport}}</a>
-  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-    <div *ngFor="let p of sports">
-      <a class="dropdown-item" (click)="courseService.selectSport(p)">{{ p }}</a>
-    </div>
-  </div></h1>
+<div class="label pt-2" *ngIf="selectedSport == null">
+  Select a sport from the list below<br/>
+  <ul class="pt-2">
+    <li *ngFor="let p of sports"><span class="label-link" (click)="courseService.selectSport(p)">{{ p }}</span></li>
+  </ul>
 
-
-  <div class="text-muted">last update: {{lastUpdate | date: 'H:mm, dd.MM.yyyy' }}</div>
-  <!--
-  <div class="btn-toolbar mb-2 mb-md-0">
-    <div class="btn-group mr-2">
-      <button class="btn btn-sm btn-outline-secondary">Share</button>
-      <button class="btn btn-sm btn-outline-secondary">Export</button>
-    </div>
-    <button class="btn btn-sm btn-outline-secondary dropdown-toggle">
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-      All
-    </button>
-  </div>-->
 </div>
-<div class="table-responsive">
-<table class="table table-sm" style="border-collapse:collapse;">
-  <thead>
-    <tr>
-      <th scope="col" style="border-top: none" class="d-none d-md-table-cell">Kurs ID</th>
-      <th scope="col" style="border-top: none">Time</th>
-      <th scope="col" style="border-top: none">Booking starts</th>
-      <th scope="col" style="border-top: none" class="d-none d-md-table-cell">Timespan</th>
-      <th scope="col" style="border-top: none" class="d-none d-md-table-cell">Place</th>
-      <th scope="col" style="border-top: none">Price</th>
-      <th scope="col" style="border-top: none">Register</th>
-    </tr>
-  </thead>
-  <tbody>
-    <ng-container *ngFor="let c of courses">
-      <tr>
-        <th class="align-middle d-none d-md-table-cell" scope="row">{{ c.kid }}</th>
-        <td class="align-middle">{{ c.day }}, {{ c.time }}</td>
-        <td class="align-middle">
-            <div *ngIf="c.bookingDate != 0">
-          {{ c.bookingDate | date: 'H:mm, dd.MM.yyyy' }}
-        </div>
-        <div *ngIf="c.bookingDate == 0" class="text-primary">
-          active now
-        </div>
-        </td>
-        <td class="align-middle d-none d-md-table-cell" >
-          <div *ngIf="c.singleEvent">
-            -
-          </div>
-          <div *ngIf="!c.singleEvent">
-            {{ c.timespan }}
-          </div>
-        </td>
-        <td class="align-middle d-none d-md-table-cell"><a href="https://www.google.com/maps?q={{c.place}}" class="link" target="_blank">{{ c.place }}</a></td>
-        <td class="align-middle" [class.text-success]="c.price == '0'" [class.text-primary]="c.price != '0'">{{ (c.price == '0' ? 'free' : c.price+'€') }}</td>
-        <td class="align-middle">
-            <div *ngIf="c.state == 'Warteliste'">
-                <button disabled type=""
-                 class="btn btn-sm text-danger" style="background-color: #00000000">
-                 Waitlist
-                </button>
-            </div>
-          <div *ngIf="c.state != 'Warteliste'">
-              <button type="button"
-              [class.btn-primary]="c.bookingDate != 0"
-              [class.btn-success]="c.bookingDate == 0"
-               class="btn btn-sm" (click)="registerFor(c)">
-               <div *ngIf="c.bookingDate != 0">
-                  Schedule
-                </div>
-                <div *ngIf="c.bookingDate == 0">
-                  Register now
-                </div>
-              </button>
-          </div>
+<ng-container *ngIf="selectedSport != null">
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
 
-        </td>
-      </tr>
-    </ng-container>
-  </tbody>
-</table>
-</div>
+        <h1 class="h2">Courses for<a class="dropdown-toggle m-1 mx-2" id="navbarDropdown" role="button"
+          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{selectedSport}}</a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <div *ngFor="let p of sports">
+            <a class="dropdown-item" (click)="courseService.selectSport(p)">{{ p }}</a>
+          </div>
+        </div></h1>
+
+
+        <div class="text-muted">last update: {{lastUpdate | date: 'H:mm, dd.MM.yyyy' }}</div>
+        <!--
+        <div class="btn-toolbar mb-2 mb-md-0">
+          <div class="btn-group mr-2">
+            <button class="btn btn-sm btn-outline-secondary">Share</button>
+            <button class="btn btn-sm btn-outline-secondary">Export</button>
+          </div>
+          <button class="btn btn-sm btn-outline-secondary dropdown-toggle">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+            All
+          </button>
+        </div>-->
+      </div>
+      <div class="table-responsive">
+      <table class="table table-sm" style="border-collapse:collapse;">
+        <thead>
+          <tr>
+            <th scope="col" style="border-top: none" class="d-none d-md-table-cell">Kurs ID</th>
+            <th scope="col" style="border-top: none">Time</th>
+            <th scope="col" style="border-top: none">Booking starts</th>
+            <th scope="col" style="border-top: none" class="d-none d-md-table-cell">Timespan</th>
+            <th scope="col" style="border-top: none" class="d-none d-md-table-cell">Place</th>
+            <th scope="col" style="border-top: none">Price</th>
+            <th scope="col" style="border-top: none">Register</th>
+          </tr>
+        </thead>
+        <tbody>
+          <ng-container *ngFor="let c of courses">
+            <tr>
+              <th class="align-middle d-none d-md-table-cell" scope="row">{{ c.kid }}</th>
+              <td class="align-middle">{{ c.day }}, {{ c.time }}</td>
+              <td class="align-middle">
+                  <div *ngIf="c.bookingDate != 0">
+                {{ c.bookingDate | date: 'H:mm, dd.MM.yyyy' }}
+              </div>
+              <div *ngIf="c.bookingDate == 0" class="text-primary">
+                active now
+              </div>
+              </td>
+              <td class="align-middle d-none d-md-table-cell" >
+                <div *ngIf="c.singleEvent">
+                  -
+                </div>
+                <div *ngIf="!c.singleEvent">
+                  {{ c.timespan }}
+                </div>
+              </td>
+              <td class="align-middle d-none d-md-table-cell"><a href="https://www.google.com/maps?q={{c.place}}" class="link" target="_blank">{{ c.place }}</a></td>
+              <td class="align-middle" [class.text-success]="c.price == '0'" [class.text-primary]="c.price != '0'">{{ (c.price == '0' ? 'free' : c.price+'€') }}</td>
+              <td class="align-middle">
+                  <div *ngIf="c.state == 'Warteliste'">
+                      <button disabled type=""
+                       class="btn btn-sm text-danger" style="background-color: #00000000">
+                       Waitlist
+                      </button>
+                  </div>
+                <div *ngIf="c.state != 'Warteliste'">
+                    <button type="button"
+                    [class.btn-primary]="c.bookingDate != 0"
+                    [class.btn-success]="c.bookingDate == 0"
+                     class="btn btn-sm" (click)="registerFor(c)">
+                     <div *ngIf="c.bookingDate != 0">
+                        Schedule
+                      </div>
+                      <div *ngIf="c.bookingDate == 0">
+                        Register now
+                      </div>
+                    </button>
+                </div>
+
+              </td>
+            </tr>
+          </ng-container>
+        </tbody>
+      </table>
+      </div>
+</ng-container>
+
