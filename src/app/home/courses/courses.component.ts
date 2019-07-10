@@ -1,16 +1,15 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CourseService } from '@app/_services/course.service';
 import { first } from 'rxjs/internal/operators/first';
 import { Course } from '@app/_models/course';
 import { Router } from '@angular/router';
-import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-courses',
   templateUrl: './courses.component.html',
   styleUrls: ['./courses.component.css']
 })
-export class CoursesComponent implements OnInit, OnDestroy {
+export class CoursesComponent implements OnInit {
 
   courses: Course[];
   lastUpdate: Date;
@@ -19,27 +18,19 @@ export class CoursesComponent implements OnInit, OnDestroy {
   link: string;
   sports: string[];
 
-  private sportsSubscription: Subscription;
-  private selectedSportSubscription: Subscription;
-
   constructor(
     private courseService: CourseService,
     private router: Router
   ) { }
 
   ngOnInit() {
-    this.selectedSportSubscription = this.courseService.selectedSport.subscribe(sport => {
+    this.courseService.selectedSport.subscribe(sport => {
       this.selectedSport = sport;
       this.updateCourses();
     });
-    this.sportsSubscription = this.courseService.sports.subscribe(sports => {
+    this.courseService.sports.subscribe(sports => {
         this.sports = sports;
     });
-  }
-
-  ngOnDestroy() {
-    this.sportsSubscription.unsubscribe();
-    this.selectedSportSubscription.unsubscribe();
   }
 
   updateCourses() {
