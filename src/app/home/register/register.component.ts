@@ -36,8 +36,11 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit() {
     this.userService.getDefaultData().pipe(first()).subscribe((res: any) => {
-      if (res === null)
+      if (res === null) {
+        this.detectChanges();
         return;
+      }
+
       const c = this.registerForm.controls;
       c.firstName.setValue(res.firstname);
       c.lastName.setValue(res.surname);
