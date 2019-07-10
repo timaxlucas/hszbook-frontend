@@ -1,22 +1,30 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit, OnDestroy } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '@environments/environment';
 import { first } from 'rxjs/operators';
-import { Observable, Subject, BehaviorSubject } from 'rxjs';
+import { Observable, Subject, BehaviorSubject, Subscription } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
-export class CourseService {
+export class CourseService implements OnInit, OnDestroy {
 
   public sports: BehaviorSubject<string[]> = new BehaviorSubject([]);
   public selectedSport: BehaviorSubject<string> = new BehaviorSubject(JSON.parse(localStorage.getItem('selectedSport')));
 
-  constructor(private http: HttpClient) {
-    this.getSports().pipe(first()).subscribe((d: string[]) => {
+  private sportSubscription: Subscription;
+
+  constructor(private http: HttpClient) { }
+
+  ngOnInit() {
+    this.sportSubscription = this.getSports().pipe(first()).subscribe((d: string[]) => {
       console.log(d);
       this.sports.next(d);
     });
+  }
+
+  ngOnDestroy() {
+    this.sportSubscription.unsubscribe();
   }
 
   selectSport(sport: string) {
