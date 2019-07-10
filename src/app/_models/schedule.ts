@@ -11,6 +11,7 @@ export class Schedule {
     price: string;
     status: string;
     result: Result;
+    sport: string;
 }
 
 class Result {
