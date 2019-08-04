@@ -2,3 +2,83 @@
     padding: 0 !important;
     border-top: none;
 }
+
+.list-icon {
+    padding: 0;
+    margin: 0 0;
+    list-style: none;
+    line-height: 1.9;
+    color: #9d9d9d;
+}
+
+.label {
+  font-size: 20px;
+  color: #9d9d9d;
+  font-weight: 300;
+}
+
+.h2{
+  font-weight: 400;
+
+}
+
+
+.schedule-card {
+    padding: 1.25rem;
+    margin-top: 1.25rem;
+    margin-bottom: 1.25rem;
+    border: 1px solid #dee2e6;
+    border-left-width: .25rem;
+    border-radius: .25rem;
+}
+
+.border-success {
+    border-left-color: #39aa56;
+    border-right-color: #dee2e6 !important;
+    border-top-color: #dee2e6 !important;
+    border-bottom-color: #dee2e6 !important;
+}
+.border-fail {
+    border-left-color: #dc3545;
+}
+.border-running {
+    border-left-color: #007bff;
+}
+.border-working {
+    border-left-color: #5bc0de;
+}
+
+.fail {
+    color: #dc3545;
+}
+.success {
+    color: #39aa56;
+}
+.working {
+    color: #5bc0de;
+}
+.running {
+    color: #007bff;
+}
+
+
+
+
+.srclink {
+    color: #9d9d9d !important;
+    text-decoration: underline;
+}
+.info-icon {
+    padding-right: 5px;
+}
+
+ul {
+    overflow: hidden;
+    white-space: nowrap;
+    display: inline-block;
+}
+
+
+.sidebutton:hover {
+    text-decoration: underline;
+}

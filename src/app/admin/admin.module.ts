@@ -8,6 +8,7 @@ import { AdminComponent } from './admin.component';
 import { AdminRoutingModule } from './admin.routing';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import { ScheduleManagerComponent } from './schedule-manager/schedule-manager.component';
+import { SharedModule } from '@app/_components/shared.module';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { ScheduleManagerComponent } from './schedule-manager/schedule-manager.co
         CommonModule,
         RouterModule,
         AdminRoutingModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        SharedModule
     ]
 })
 export class AdminModule { }

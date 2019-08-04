@@ -10,7 +10,6 @@ import { CoursesComponent } from './courses/courses.component';
 import { RegisterComponent } from './register/register.component';
 import { SchedulesComponent } from './schedules/schedules.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { CalendarMomentPipe } from '@app/_helpers/calendar.pipe';
 import { SharedModule } from '@app/_components/shared.module';
 
 
@@ -20,8 +19,7 @@ import { SharedModule } from '@app/_components/shared.module';
         CoursesComponent,
         RegisterComponent,
         SchedulesComponent,
-        DashboardComponent,
-        CalendarMomentPipe
+        DashboardComponent
     ],
     imports: [
         BrowserModule,
