@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: 'https://hszbook-api.timaxlucas.de'
+  apiUrl: 'https://hszbook.timaxlucas.de/api'
 };
