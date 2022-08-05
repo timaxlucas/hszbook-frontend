@@ -30,7 +30,7 @@
     "express-jwt-permissions": "^1.2.3",
     "feather-icons": "^4.21.0",
     "moment": "^2.24.0",
-    "mongoose": "^5.3.13",
+    "mongoose": "^5.7.5",
     "ngx-clipboard": "^11.1.9",
     "ngx-masonry": "^1.1.2",
     "rxjs": "~6.5.2",
